@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Template Tabel 4Tels</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+        <style>
+            table, th, td {
+                border: 3px solid white;
+            }
+
+            tr.head {
+                background-color: #43CD8B;
+                color: white;
+            }
+
+            tr.body-light {
+                background-color: #E8F3EE;
+            }
+
+            tr.body-dark {
+                background-color: #43cd8b30;
+            }
+
+            .tombol {
+                background: #43CD8B;
+                border-radius: 50px;
+                color: white;
+            }
+
+            .tombol:hover {
+                background: #246e4a;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="table text-center">
+            <thead>
+                <tr class="head">
+                    <th scope="col">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="body-dark">
+                    <td>1</td>
+                    <td>Username</td>
+                    <td>Jl.Sultan Hasanuddin</td>
+                    <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                </tr>
+                <tr class="body-light">
+                    <td>2</td>
+                    <td>Username 2</td>
+                    <td>Jl.Sultan Hasanuddin 2</td>
+                    <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                </tr>
+                <tr class="body-dark">
+                    <td>3</td>
+                    <td>Username 3</td>
+                    <td>Jl.Sultan Hasanuddin 3</td>
+                    <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

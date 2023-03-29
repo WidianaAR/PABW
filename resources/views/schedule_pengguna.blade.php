@@ -23,10 +23,10 @@
                             <img src="{{ URL::asset('images/logo2.png') }}" width="100px" height="40px">
                         </li>
                         <li class="nav-item" style="padding-right: 5vh">
-                            <a type="button" href="{{ route('home') }}" style="background: #ffffff; border-radius: 45px; height: 40px; width: 100px; color: #43CD8B ; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Home</a>
+                            <a type="button" href="{{ route('home') }}" style="background: #ffffff; border-radius: 45px; height: 40px; width: 100px; color: #343A3A ; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Home</a>
                         </li>
                         <li class="nav-item" style="padding-right: 5vh">
-                            <a type="button" href="{{ route('schedule_pengguna') }}" style="background: #ffffff; border-radius: 45px; height: 40px; width: 100px; color: #343A3A; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Schedule</a>
+                            <a type="button" href="{{ route('schedule_pengguna') }}" style="background: #ffffff; border-radius: 45px; height: 40px; width: 100px; color: #43CD8B; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Schedule</a>
                         </li>
                         <li class="nav-item" style="padding-right: 5vh">
                             <a type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Logout</a>
@@ -36,19 +36,9 @@
             </nav>
         </div>
         <div class="text-left">
-            <h2> Selamat datang {{Auth::user()->name}} </h2>
-            <div>
-                <img src="{{ URL::asset('images/homepic.png') }}" width="200px" height="255px">
-            </div>
-            <h4> Jumlah saldo Anda: </h4>
-            <div>
-                <a type="container" style="background: #ffffff; border-radius: 45px; height: 40px; width: 200px; color: rgb(24, 24, 24); display: flex; flex-direction: row; justify-content: center; align-items: center; border: 2px solid #43CD8B; padding: 18px 24px;">1000000</a>
-            </div>
-        </div>
-        <div class="text-left">
             <h2> Kamar Hotel</h2>
-            <h2> Temukan Kamar Hotel sesuai dengan</h2>
-            <h2> kenyamanan anda</h2>
+            <h2> Schedule Booking</h2>
+            <h2> Hotel Anda</h2>
         </div>
         <div class="table">
             <title>Template Tabel 4Tels</title>
@@ -73,13 +63,13 @@
                 }
     
                 .tombol {
-                    background: #43CD8B;
+                    background: #F36868;
                     border-radius: 50px;
                     color: white;
                 }
     
                 .tombol:hover {
-                    background: #246e4a;
+                    background: #833636;
                     color: white;
                 }
             </style>
@@ -91,8 +81,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Harga per Checkin</th>
+                        <th scope="col">Jadwal</th>
+                        <th scope="col">Batas Waktu</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -103,7 +93,7 @@
                         <td>Jl.Sultan Hasanuddin</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                     <tr class="body-light">
                         <td>2</td>
@@ -111,7 +101,7 @@
                         <td>Jl.Sultan Hasanuddin 2</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                     <tr class="body-dark">
                         <td>3</td>
@@ -119,20 +109,20 @@
                         <td>Jl.Sultan Hasanuddin 3</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                 </tbody>
             </table>
         </body>
         </div>
-        <div class="text-right">
+        <ul class="text-right">
             <a type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Prev</a>
             <a type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Next</a>
         </div>
         <div class="text-left">
             <h2> Tiket Penerbangan</h2>
-            <h2> Cari kursi Penerbangan yang</h2>
-            <h2> anda perlukan</h2>
+            <h2> Schedule Penerbangan </h2>
+            <h2> Anda</h2>
         </div>
         <div class="table">
             <title>Template Tabel 4Tels</title>
@@ -157,13 +147,13 @@
                 }
     
                 .tombol {
-                    background: #43CD8B;
+                    background: #F36868;
                     border-radius: 50px;
                     color: white;
                 }
     
                 .tombol:hover {
-                    background: #246e4a;
+                    background: #833636;
                     color: white;
                 }
             </style>
@@ -175,9 +165,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Tujuan</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Harga Ekonomi </th>
-                        <th scope="col">Waktu WITA</th>
+                        <th scope="col">Waktu WITA </th>
+                        <th scope="col">Batas Waktu</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -188,8 +177,7 @@
                         <td>Jl.Sultan Hasanuddin</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                     <tr class="body-light">
                         <td>2</td>
@@ -197,8 +185,7 @@
                         <td>Jl.Sultan Hasanuddin 2</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                     <tr class="body-dark">
                         <td>3</td>
@@ -206,16 +193,15 @@
                         <td>Jl.Sultan Hasanuddin 3</td>
                         <td>Username</td>
                         <td>Username</td>
-                        <td>Username</td>
-                        <td><a href="" class="btn tombol"><b>Pesan</b></a></td>
+                        <td><a href="" class="btn tombol"><b>Batalkan</b></a></td>
                     </tr>
                 </tbody>
             </table>
         </body>
         </div>
-        <div class="text-right">
-            <a type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Prev</a>
-            <a type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Next</a>
-        </div>
+        <ul class="navbar-nav ml-auto" id="right-menu"> 
+            <li type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Prev</li>
+            <li type="button" href="{{ route('logout') }}" style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px;">Next</li>
+        </ul>
     </body>
 </html>

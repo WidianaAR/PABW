@@ -53,5 +53,8 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $value) {
             User::create($value);
         }
+
+        $this->call(KamarHotelSeeder::class);
+        $this->call(TiketPenerbanganSeeder::class);
     }
 }
