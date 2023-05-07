@@ -13,4 +13,11 @@ class KetersediaanController extends Controller
 
         return view('admin.ketersediaan', compact("ketersediaanKamar", "tiketPenerbangan"));
     }
+
+    // public function delete_ketersediaan_kamar($id)
+    // {
+    //     $ketersediaanKamar::destroy($id); 
+    //     return redirect()->back()->with('success', '');
+    // }
 }
+
