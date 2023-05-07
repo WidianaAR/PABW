@@ -9,17 +9,21 @@ class HotelPenerbangan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'jumlah',
-        'harga',
-        'status',
-        'tanggal',
-        'kategori',
-        'keterangan',
-    ];
+    public $timestamps = false;
+    protected $guarded = ['id'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function keterangan()
+    {
+        return $this->belongsTo(Keterangan::class);
+    }
+
+    public function transaksi_pemesanan()
+    {
+        return $this->hasMany(TransaksiPemesanan::class);
     }
 }

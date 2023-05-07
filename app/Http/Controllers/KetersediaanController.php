@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KamarHotel;
-use App\Models\TiketPenerbangan;
-use Illuminate\Http\Request;
+use App\Models\HotelPenerbangan;
 
 class KetersediaanController extends Controller
 {
     public function ketersediaan()
     {
-        $ketersediaanKamar = KamarHotel::all();
-        $tiketPenerbangan = TiketPenerbangan::all();
-        return view('ketersediaan', compact("ketersediaanKamar", "tiketPenerbangan"));
+        $ketersediaanKamar = HotelPenerbangan::where('kategori', 'hotel')->with('keterangan')->get();
+        $tiketPenerbangan = HotelPenerbangan::where('kategori', 'penerbangan')->with('keterangan')->get();
+
+        return view('admin.ketersediaan', compact("ketersediaanKamar", "tiketPenerbangan"));
     }
 }
