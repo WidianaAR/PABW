@@ -28,8 +28,8 @@
 
 @section('isi')
     <div class="admin input-form m-5 px-5 b-1">
-        <h5>Ubah Ketersediaan Kamar Hotel</h5>
-        <form action="{{ route('edit_ketersediaan_Hotel_action', $data->id) }}" method="POST">
+        <h5>Ubah Ketersediaan Kursi Penerbangan</h5>
+        <form action="{{ route('edit_ketersediaan_Pesawat_action', $data->id) }}" method="POST">
             @method('PUT')
             @csrf
             <input type="text" class="form-control @error('nama') mb-0 is-invalid @enderror" name="nama"
@@ -41,15 +41,23 @@
             @enderror
 
             <input type="text" class="form-control mt-2 @error('keterangan_satu') mb-0 is-invalid @enderror" name="keterangan_satu"
-                placeholder="Alamat" aria-describedby="keterangan_satu-error" value="{{ old('keterangan_satu', $data->keterangan->keterangan_satu) }}" required>
+                placeholder="Tujuan" aria-describedby="keterangan_satu-error" value="{{ old('keterangan_satu', $data->keterangan->keterangan_satu) }}" required>
             @error('keterangan->keterangan_satu')
                 <div id="keterangan_satu-error" class="invalid-feedback mb-2 mt-0">
                     {{ $message }}
                 </div>
             @enderror
 
+            <input type="time" class="form-control mt-2 @error('keterangan_dua') mb-0 is-invalid @enderror" name="keterangan_dua"
+                placeholder="Waktu WITA" aria-describedby="keterangan_dua-error" value="{{ old('keterangan_dua', $data->keterangan->keterangan_dua) }}" required>
+            @error('keterangan->keterangan_dua')
+                <div id="keterangan_dua-error" class="invalid-feedback mb-2 mt-0">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <input type="number" class="form-control @error('stok') mb-0 is-invalid @enderror" name="stok"
-                placeholder="Jumlah Kamar" aria-describedby="stok-error" value="{{old('stok', $data->stok)}}" required>
+                placeholder="Jumlah Kursi" aria-describedby="stok-error" value="{{old('stok', $data->stok)}}" required>
             @error('stok')
                 <div id="stok-error" class="invalid-feedback mb-2 mt-0">
                     {{ $message }}
@@ -57,7 +65,7 @@
             @enderror
             
             <input type="number" class="form-control @error('jumlah_terbooking') mb-0 is-invalid @enderror" name="jumlah_terbooking"
-                placeholder="Kamar Terbooking" aria-describedby="jumlah_terbooking-error" value="{{old('jumlah_terbooking', $data->jumlah_terbooking)}}" required>
+                placeholder="kursi Terbooking" aria-describedby="jumlah_terbooking-error" value="{{old('jumlah_terbooking', $data->jumlah_terbooking)}}" required>
             @error('jumlah_terbooking')
                 <div id="jumlah_terbooking-error" class="invalid-feedback mb-2 mt-0">
                     {{ $message }}

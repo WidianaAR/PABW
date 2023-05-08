@@ -89,4 +89,6 @@ Route::get('ketersediaan/{id}/delete_penerbangan', [KetersediaanController::clas
 Route::get('Ketersediaan_Hotel_edit_form/{id}/edit', [KetersediaanController::class, 'edit'])->name('edit_ketersediaan_Hotel');
 Route::put('Ketersediaan_Hotel_edit_form/{id}', [KetersediaanController::class, 'update'])->name('edit_ketersediaan_Hotel_action');
 
-
+// Sunting Ketersediaan Kursi Penerbangan
+Route::get('Ketersediaan_Pesawat_edit_form/{id}/edit', [KetersediaanController::class, 'edit_pesawat'])->name('edit_ketersediaan_Pesawat');
+Route::put('Ketersediaan_Pesawat_edit_form/{id}', [KetersediaanController::class, 'update'])->name('edit_ketersediaan_Pesawat_action');
