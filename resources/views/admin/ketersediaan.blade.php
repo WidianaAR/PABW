@@ -56,8 +56,8 @@
                         <td>{{ $kk->jumlah_terbooking }}</td>
                         <td>{{ $kk->stok - $kk->jumlah_terbooking }}</td>
                         <td>{{ $kk->status }}</td>
-                        <td><a href="" class="btn tombol"><b>edit</b></a>
-                            <a href=""class="btn tombol"
+                        <td><a href="{{ route ('edit_ketersediaan_Hotel', $kk->id)}}" class="btn tombol"><b>edit</b></a>
+                            <a href="{{ route ('delete_hotel', $kk->id)}}"class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>
                     </tr>
                 @endforeach
@@ -101,7 +101,7 @@
                         <td>{{ $tb->stok = $tb->jumlah_terbooking }}</td>
                         <td>{{ $tb->status }}</td>
                         <td><a href="" class="btn tombol"><b>edit</b></a>
-                            <a href=""class="btn tombol"
+                            <a href="{{ route ('delete_penerbangan', $tb->id)}}"class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>
                     </tr>
                 @endforeach

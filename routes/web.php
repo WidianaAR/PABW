@@ -79,8 +79,14 @@ Route::get('ketersediaan', [KetersediaanController::class, 'ketersediaan'])->nam
 // Pembatalan Bookinng Hotel & Pesawat
 Route::get('schedule_pengguna/{id}/cancel',[BookingController::class, 'cancel']) ->name('cancel');
 
-// Edit Ketersediaan
-Route::get('ketersediaan/{id}/edit', [SuntingMitraController::class, 'edit'])->name('edit_mitra');
-// Delete Ketersediaan
-Route::get('ketersediaan/{id}/edit', [SuntingMitraController::class, 'edit'])->name('edit_mitra');
+
+// Delete Ketersediaan Kamar Hotel
+Route::get('ketersediaan/{id}/delete_hotel', [KetersediaanController::class, 'delete_ketersediaan_kamar'])->name('delete_hotel');
+// Delete Ketersediaan kursi Penerbangan
+Route::get('ketersediaan/{id}/delete_penerbangan', [KetersediaanController::class, 'delete_ketersediaan_penerbangan'])->name('delete_penerbangan');
+
+// Sunting Ketersediaan kamar Hotel
+Route::get('Ketersediaan_Hotel_edit_form/{id}/edit', [KetersediaanController::class, 'edit'])->name('edit_ketersediaan_Hotel');
+Route::put('Ketersediaan_Hotel_edit_form/{id}', [KetersediaanController::class, 'update'])->name('edit_ketersediaan_Hotel_action');
+
 

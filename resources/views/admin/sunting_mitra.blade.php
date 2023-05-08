@@ -44,7 +44,7 @@
     <div class="admin">
         <div class="text-left">
             <h2> MITRA</h2>
-            <h2> Tambah dan Suntung</h2>
+            <h2> Tambah dan Sunting</h2>
             <h2> Mitra</h2>
         </div>
         <a type="button" href="{{ route('add_mitra') }}"
