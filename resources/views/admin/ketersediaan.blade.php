@@ -53,7 +53,12 @@
                         <td>{{ $kk->nama }}</td>
                         <td>{{ $kk->keterangan->keterangan_satu }}</td>
                         <td>{{ $kk->stok }}</td>
-                        <td>{{ $kk->jumlah_terbooking }}</td>
+                        @if ($kk->jumlah_terbooking > $kk->stok)
+                            <td>{{ $kk->jumlah_terbooking == $kk->stok}}</td>
+                        @else
+                            <td>{{ $kk->jumlah_terbooking }}</td>
+                        @endif
+                        <!-- <td>{{ $kk->jumlah_terbooking }}</td> -->
                         <td>{{ $kk->stok - $kk->jumlah_terbooking }}</td>
                         <!-- <td>{{ $kk->status }}</td> -->
                         @if ($kk->jumlah_terbooking == $kk->stok)
@@ -102,7 +107,12 @@
                         <td>{{ $tb->keterangan->keterangan_satu }}</td>
                         <td>{{ $tb->keterangan->keterangan_dua }}</td>
                         <td>{{ $tb->stok }}</td>
-                        <td>{{ $tb->jumlah_terbooking }}</td>
+                        @if ($tb->jumlah_terbooking > $tb->stok)
+                            <td>{{ $tb->jumlah_terbooking == $tb->stok}}</td>
+                        @else
+                            <td>{{ $tb->jumlah_terbooking }}</td>
+                        @endif
+                        <!-- <td>{{ $tb->jumlah_terbooking }}</td> -->
                         <td>{{ $tb->stok - $tb->jumlah_terbooking }}</td>
                         <!-- <td>{{ $tb->status }}</td> -->
                         @if ($tb->jumlah_terbooking == $tb->stok)

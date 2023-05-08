@@ -56,6 +56,11 @@ class KetersediaanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'jumlah_terbooking' => 'required|numeric|max:'.$request->stok,
+            
+        ]);
+
         $data = HotelPenerbangan::find($id);
         $keterangan = $request->only(['keterangan_satu', 'keterangan_dua']);
         Keterangan::find($data->keterangan_id)->update($keterangan);
