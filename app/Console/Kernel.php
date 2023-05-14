@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\TransaksiPemesanan;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +16,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $currentDate = date('d-m-Y');
+            $datas = TransaksiPemesanan::where('status_transaksi', 'dipesan')->get();
+
+            foreach ($datas as $data) {
+                if ($currentDate > date('d-m-Y', strtotime($data->tanggal_booking))) {
+                    $data->update(['status_transaksi' => 'selesai']);
+                    $data->hotel_penerbangan->user->update(['saldo_emoney' => $data->hotel_penerbangan->user->saldo_emoney + $data->total_biaya]);
+                }
+            }
+        })->everyMinute();
     }
 
     /**
@@ -25,7 +36,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

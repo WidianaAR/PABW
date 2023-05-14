@@ -60,15 +60,10 @@ class BookingController extends Controller
         $data->update(['status_transaksi' => 'dibatalkan']);
         $data->user->update(['saldo_emoney' => $data->user->saldo_emoney + $data->total_biaya]);
         $data->hotel_penerbangan->update(['jumlah_terbooking' => $data->hotel_penerbangan->jumlah_terbooking - $data->jumlah]);
+        if ($data->hotel_penerbangan->stok > $data->hotel_penerbangan->jumlah_terbooking) {
+            $data->hotel_penerbangan->update(['status' => 'Tersedia']);
+        }
         $data::destroy($id);
         return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan');
-    }
-
-    public function mitra_saldo($id)
-    {
-        $data = TransaksiPemesanan::find($id);
-        $data->update(['status_transaksi' => 'selesai']);
-        $data->hotel_penerbangan->user->update(['saldo_emoney' => $data->hotel_penerbangan->user->saldo_emoney + $data->total_biaya]);
-        return redirect()->back();
     }
 }

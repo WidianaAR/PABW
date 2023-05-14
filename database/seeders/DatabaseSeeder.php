@@ -32,21 +32,21 @@ class DatabaseSeeder extends Seeder
                 'name' => 'ini akun Admin',
                 'email' => 'admin@gmail.com',
                 'password' => '12345',
-                'saldo_emoney' => 50000,
+                'saldo_emoney' => 500000,
             ],
             [
                 'role_id' => 2,
                 'name' => 'ini akun Pengguna',
                 'email' => 'pengguna@gmail.com',
                 'password' => '12345',
-                'saldo_emoney' => 50000,
+                'saldo_emoney' => 500000,
             ],
             [
                 'role_id' => 3,
                 'name' => 'ini akun Mitra',
                 'email' => 'mitra@gmail.com',
                 'password' => '12345',
-                'saldo_emoney' => 50000,
+                'saldo_emoney' => 500000,
             ]
         ];
 

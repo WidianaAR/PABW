@@ -77,7 +77,7 @@ Route::get('home_admin', function () {
 Route::get('ketersediaan', [KetersediaanController::class, 'ketersediaan'])->name('ketersediaan');
 
 // Pembatalan Bookinng Hotel & Pesawat
-Route::get('schedule_pengguna/{id}/cancel',[BookingController::class, 'cancel']) ->name('cancel');
+Route::get('schedule_pengguna/{id}/cancel', [BookingController::class, 'cancel'])->name('cancel');
 
 
 // Delete Ketersediaan Kamar Hotel

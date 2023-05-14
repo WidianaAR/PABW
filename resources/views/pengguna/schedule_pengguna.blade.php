@@ -19,14 +19,14 @@
 @endsection
 
 @section('isi')
-    @if (!!session('success'))
+    @if (session('success'))
         <div class="alert alert-success" role="alert" id="msg-box">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             {{ session('success') }}
         </div>
     @endif
 
-    @if (!!session('error'))
+    @if (session('error'))
         <div class="alert alert-danger" role="alert" id="msg-box">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             {{ session('error') }}
@@ -46,22 +46,26 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">Jadwal</th>
-                    <th scope="col">Batas Waktu</th>
+                    <th scope="col">Batalkan Sebelum</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if (!!$ketersediaanKamar->count())
+                @if ($ketersediaanKamar->count())
                     @foreach ($ketersediaanKamar as $kk)
                         <tr class="body-dark">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $kk->hotel_penerbangan->nama }}</td>
                             <td>{{ $kk->hotel_penerbangan->keterangan->keterangan_satu }}</td>
-                            <td>{{ $kk->tanggal_booking }}</td>
-                            <td></td>
+                            <td>{{ date('d-m-Y', strtotime($kk->tanggal_booking)) }}</td>
+                            <td>{{ date('d-m-Y', strtotime($kk->tanggal_booking . ' -1 days')) }} 00:00</td>
                             <td>
-                                <a href="{{ route ('cancel', $kk->id)}}" class="btn tombol"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"> <b>Batalkan</b></a></td>
+                                @if (date('d-m-Y') < date('d-m-Y', strtotime($kk->tanggal_booking . ' -1 days')))
+                                    <a href="{{ route('cancel', $kk->id) }}" class="btn tombol"
+                                        onclick="return confirm('Apakah Anda yakin ingin membatalkan pesanan?');">
+                                        <b>Batalkan</b></a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 @else
@@ -89,23 +93,29 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Tujuan</th>
+                    <th scope="col">Tanggal Keberangkatan</th>
                     <th scope="col">Waktu WITA </th>
-                    <th scope="col">Batas Waktu</th>
+                    <th scope="col">Batalkan Sebelum</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if (!!$tiketPenerbangan->count())
+                @if ($tiketPenerbangan->count())
                     @foreach ($tiketPenerbangan as $tb)
                         <tr class="body-dark">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $tb->hotel_penerbangan->nama }}</td>
                             <td>{{ $tb->hotel_penerbangan->keterangan->keterangan_satu }}</td>
+                            <td>{{ date('d-m-Y', strtotime($tb->tanggal_booking)) }}</td>
                             <td>{{ $tb->hotel_penerbangan->keterangan->keterangan_dua }}</td>
-                            <td>{{ $tb->tanggal_booking }}</td>
+                            <td>{{ date('d-m-Y', strtotime($tb->tanggal_booking . ' -1 days')) }} 00:00</td>
                             <td>
-                            <a href="{{ route ('cancel', $tb->id)}}" class="btn tombol"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"> <b>Batalkan</b></a></td>
+                                @if (date('d-m-Y') < date('d-m-Y', strtotime($tb->tanggal_booking . ' -1 days')))
+                                    <a href="{{ route('cancel', $tb->id) }}" class="btn tombol"
+                                        onclick="return confirm('Apakah Anda yakin ingin membatalkan pesanan?');">
+                                        <b>Batalkan</b></a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 @else
