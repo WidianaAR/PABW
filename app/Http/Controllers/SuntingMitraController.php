@@ -25,7 +25,10 @@ class SuntingMitraController extends Controller
             'confirm-password' => 'required|same:password'
         ]);
 
-        User::create($request->all());
+        $data = User::create($request->all());
+        activity()
+            ->performedOn($data)
+            ->log('Menambah mitra baru dengan nama ' . $data->name);
         return redirect()->route('sunting_mitra')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -44,13 +47,20 @@ class SuntingMitraController extends Controller
         }
 
         $request->validate($rule);
-        User::find($id)->update($request->all());
+        $data = User::find($id)->update($request->all());
+        activity()
+            ->performedOn($data)
+            ->log('Mengubah data mitra dengan id ' . $data->id);
         return redirect()->route('sunting_mitra')->with('success', 'Data berhasil diubah');
     }
 
     public function destroy($id)
     {
-        User::destroy($id);
+        $data = User::find($id);
+        activity()
+            ->performedOn($data)
+            ->log('Menghapus mitra dengan nama ' . $data->name);
+        $data->delete();
         return redirect()->route('sunting_mitra')->with('success', 'Data berhasil dihapus');
     }
 }

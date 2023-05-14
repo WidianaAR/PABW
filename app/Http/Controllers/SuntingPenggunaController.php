@@ -25,7 +25,10 @@ class SuntingPenggunaController extends Controller
             'confirm-password' => 'required|same:password'
         ]);
 
-        User::create($request->all());
+        $data = User::create($request->all());
+        activity()
+            ->performedOn($data)
+            ->log('Menambah pengguna baru dengan nama ' . $data->name);
         return redirect()->route('sunting_pengguna')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -44,13 +47,20 @@ class SuntingPenggunaController extends Controller
         }
 
         $request->validate($rule);
-        User::find($id)->update($request->all());
+        $data = User::find($id)->update($request->all());
+        activity()
+            ->performedOn($data)
+            ->log('Mengubah data pengguna dengan id ' . $data->id);
         return redirect()->route('sunting_pengguna')->with('success', 'Data berhasil diubah');
     }
 
     public function destroy($id)
     {
-        User::destroy($id);
+        $data = User::find($id);
+        activity()
+            ->performedOn($data)
+            ->log('Menghapus pengguna dengan nama ' . $data->name);
+        $data->delete();
         return redirect()->route('sunting_pengguna')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -26,16 +26,25 @@ class HotelPenerbanganController extends Controller
             $status = 'Tidak tersedia';
         }
 
-        HotelPenerbangan::create([
+        $request->validate([
+            'jumlah_terbooking' => 'required|numeric|max:' . $request->stok
+        ], [
+                'jumlah_terbooking.max' => 'Jumlah terbooking tidak boleh melebihi stok'
+            ]);
+
+        $data = HotelPenerbangan::create([
             'user_id' => Auth::user()->id,
             'keterangan_id' => $keterangan_id,
             'kategori' => $request->kategori,
             'nama' => $request->nama,
             'stok' => $request->stok,
-            'jumlah_terbooking' => 0,
+            'jumlah_terbooking' => $request->jumlah_terbooking,
             'harga' => $request->harga,
             'status' => $status
         ]);
+        activity()
+            ->performedOn($data)
+            ->log('Menambah data ' . $data->nama);
         return redirect()->route('home_mitra')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -57,18 +66,31 @@ class HotelPenerbanganController extends Controller
             $status = 'Tidak tersedia';
         }
 
-        HotelPenerbangan::find($data->id)->update([
+        $request->validate([
+            'jumlah_terbooking' => 'required|numeric|max:' . $request->stok
+        ], [
+                'jumlah_terbooking.max' => 'Jumlah terbooking tidak boleh melebihi stok'
+            ]);
+
+        $data = HotelPenerbangan::find($data->id)->update([
             'nama' => $request->nama,
             'stok' => $request->stok,
+            'jumlah_terbooking' => $request->jumlah_terbooking,
             'harga' => $request->harga,
             'status' => $status
         ]);
+        activity()
+            ->performedOn($data)
+            ->log('Mengubah data dengan id ' . $data->id);
         return redirect()->route('home_mitra')->with('success', 'Data berhasil diubah');
     }
 
     public function destroy($id)
     {
-        HotelPenerbangan::destroy($id);
+        $data = HotelPenerbangan::find($id);
+        activity()
+            ->performedOn($data)
+            ->log('Menghapus data ' . $data->nama);
         return redirect()->route('home_mitra')->with('success', 'Data berhasil dihapus');
     }
 }

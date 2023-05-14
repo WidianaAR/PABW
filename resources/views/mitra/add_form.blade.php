@@ -24,47 +24,48 @@
         <h5>Tambahkan data {{ $kategori }}</h5>
         <form action="{{ route('add_hp_action') }}" method="POST">
             @csrf
-            <input type="text" class="form-control @error('nama') mb-0 is-invalid @enderror" name="nama"
-                placeholder="Nama" aria-describedby="nama-error" value="{{ old('nama') }}" required>
-            @error('nama')
-                <div id="nama-error" class="invalid-feedback mb-2 mt-0">
-                    {{ $message }}
-                </div>
-            @enderror
 
-            <input type="text" class="form-control mt-2 @error('stok') mb-0 is-invalid @enderror" name="stok"
-                placeholder="Jumlah" aria-describedby="stok-error" value="{{ old('stok') }}" required>
-            @error('stok')
-                <div id="stok-error" class="invalid-feedback mb-2 mt-0">
-                    {{ $message }}
-                </div>
-            @enderror
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nama</span>
+                <input type="text" id="nama" class="form-control @error('nama') mb-0 is-invalid @enderror"
+                    name="nama" value="{{ old('nama') }}" required>
+            </div>
 
-            <input type="text" class="form-control mt-2 @error('harga') mb-0 is-invalid @enderror" name="harga"
-                placeholder="Harga satuan" aria-describedby="harga-error" value="{{ old('harga') }}" required>
-            @error('harga')
-                <div id="harga-error" class="invalid-feedback mb-2 mt-0">
-                    {{ $message }}
-                </div>
-            @enderror
+            <div class="input-group mb-3">
+                <span class="input-group-text">Stok</span>
+                <input type="text" class="form-control @error('stok') mb-0 is-invalid @enderror" name="stok"
+                    value="{{ old('stok') }}" required>
+            </div>
 
-            <input type="text" class="form-control mt-2 @error('keterangan_satu') mb-0 is-invalid @enderror"
-                name="keterangan_satu" placeholder="{{ $kategori == 'Hotel' ? 'Alamat' : 'Rute' }}"
-                aria-describedby="keterangan_satu-error" value="{{ old('keterangan_satu') }}" required>
-            @error('keterangan_satu')
-                <div id="keterangan_satu-error" class="invalid-feedback mb-2 mt-0">
-                    {{ $message }}
-                </div>
-            @enderror
+            <div class="input-group mb-3">
+                <span class="input-group-text">Jumlah Terbooking</span>
+                <input type="text" id="jumlah_terbooking"
+                    class="form-control @error('jumlah_terbooking') mb-0 is-invalid @enderror" name="jumlah_terbooking"
+                    aria-describedby="jumlah_terbooking-error" value="{{ old('jumlah_terbooking') }}" required>
+                @error('jumlah_terbooking')
+                    <div id="jumlah_terbooking-error" class="invalid-feedback mb-2 mt-0">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
-            <input type="time" class="form-control mt-2 @error('keterangan_dua') mb-0 is-invalid @enderror"
-                name="keterangan_dua" placeholder="Waktu penerbangan" aria-describedby="keterangan_dua-error" value=""
-                {{ $kategori == 'Hotel' ? 'hidden' : '' }}>
-            @error('keterangan_dua')
-                <div id="keterangan_dua-error" class="invalid-feedback mb-2 mt-0">
-                    {{ $message }}
-                </div>
-            @enderror
+            <div class="input-group mb-3">
+                <span class="input-group-text">Harga</span>
+                <input type="text" class="form-control @error('harga') mb-0 is-invalid @enderror" name="harga"
+                    value="{{ old('harga') }}" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">{{ $kategori == 'Hotel' ? 'Alamat' : 'Rute Penerbangan' }}</span>
+                <input type="text" class="form-control @error('keterangan_satu') mb-0 is-invalid @enderror"
+                    name="keterangan_satu"value="{{ old('keterangan_satu') }}" required>
+            </div>
+
+            <div class="input-group mb-3" {{ $kategori == 'Hotel' ? 'hidden' : '' }}>
+                <span class="input-group-text">Waktu</span>
+                <input type="time" class="form-control @error('keterangan_dua') mb-0 is-invalid @enderror"
+                    name="keterangan_dua"value="{{ old('keterangan_dua') }}">
+            </div>
 
             <input type="text" name="kategori" value="{{ $kategori }}" hidden>
 

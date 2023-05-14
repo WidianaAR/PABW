@@ -23,19 +23,24 @@ class UserController extends Controller
         if (Auth::attempt($credential)) {
             $user = Auth::user();
             if ($user->role_id == 1) {
+                activity()->log('Admin login ke dalam sistem');
                 return redirect()->intended('admin');
             } elseif ($user->role_id == 2) {
+                activity()->log('Pengguna login ke dalam sistem');
                 return redirect()->intended('pengguna');
             } elseif ($user->role_id == 3) {
+                activity()->log('Mitra login ke dalam sistem');
                 return redirect()->intended('mitra');
             }
             return redirect('login');
         }
-        return redirect('login')->withErrors(['login_gagal' => 'Akun tidak terdaftar di dalam sistem']);
+        activity()->log('Error | Percobaan login gagal');
+        return redirect('login')->withErrors(['login_gagal' => 'Email atau password salah!']);
     }
 
     public function logout(Request $request)
     {
+        activity()->log('Logout dari sistem');
         $request->session()->flush();
         Auth::logout();
         return Redirect('login');

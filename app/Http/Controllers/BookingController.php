@@ -31,7 +31,7 @@ class BookingController extends Controller
         } elseif ($tersedia < $request->jumlah) {
             return redirect()->back()->with('error', 'Maaf stok tidak cukup, jumlah yang tersisa adalah ' . $tersedia);
         } else {
-            TransaksiPemesanan::create([
+            $data = TransaksiPemesanan::create([
                 'user_id' => $user->id,
                 'hotel_penerbangan_id' => $id,
                 'tanggal_booking' => $request->tanggal_booking,
@@ -39,6 +39,10 @@ class BookingController extends Controller
                 'total_biaya' => $total,
                 'status_transaksi' => 'dipesan'
             ]);
+
+            activity()
+                ->performedOn($data)
+                ->log('Melakukan pemesanan untuk tanggal ' . $data->tanggal_booking);
 
             $hotel_penerbangan->update([
                 'jumlah_terbooking' => $hotel_penerbangan->jumlah_terbooking + $request->jumlah
@@ -63,7 +67,10 @@ class BookingController extends Controller
         if ($data->hotel_penerbangan->stok > $data->hotel_penerbangan->jumlah_terbooking) {
             $data->hotel_penerbangan->update(['status' => 'Tersedia']);
         }
-        $data::destroy($id);
+
+        activity()
+            ->performedOn($data)
+            ->log('Membatalkan pesanan untuk tanggal ' . $data->tanggal_booking);
         return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan');
     }
 }

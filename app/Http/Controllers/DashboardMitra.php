@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\HotelPenerbangan;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardMitra extends Controller
 {
     public function dashboard_Mitra()
     {
-        $ketersediaanKamar = HotelPenerbangan::where('kategori', 'hotel')->with('keterangan')->get();
-        $tiketPenerbangan = HotelPenerbangan::where('kategori', 'penerbangan')->with('keterangan')->get();
+        $id = Auth::user()->id;
+        $ketersediaanKamar = HotelPenerbangan::where(['kategori' => 'hotel', 'user_id' => $id])->with('keterangan')->get();
+        $tiketPenerbangan = HotelPenerbangan::where(['kategori' => 'penerbangan', 'user_id' => $id])->with('keterangan')->get();
         return view('mitra.home_mitra', compact('ketersediaanKamar', 'tiketPenerbangan'));
     }
     public function booking_Status()
     {
-        $ketersediaanKamar = HotelPenerbangan::where('kategori', 'hotel')->with('keterangan')->get();
-        $tiketPenerbangan = HotelPenerbangan::where('kategori', 'penerbangan')->with('keterangan')->get();
+        $id = Auth::user()->id;
+        $ketersediaanKamar = HotelPenerbangan::where(['kategori' => 'hotel', 'user_id' => $id])->with('keterangan')->get();
+        $tiketPenerbangan = HotelPenerbangan::where(['kategori' => 'penerbangan', 'user_id' => $id])->with('keterangan')->get();
         return view('mitra.status', compact('ketersediaanKamar', 'tiketPenerbangan'));
     }
 }

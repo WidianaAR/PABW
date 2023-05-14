@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
                     $data->hotel_penerbangan->user->update(['saldo_emoney' => $data->hotel_penerbangan->user->saldo_emoney + $data->total_biaya]);
                 }
             }
-        })->everyMinute();
+        })->daily();
     }
 
     /**
