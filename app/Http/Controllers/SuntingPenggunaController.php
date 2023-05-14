@@ -47,7 +47,8 @@ class SuntingPenggunaController extends Controller
         }
 
         $request->validate($rule);
-        $data = User::find($id)->update($request->all());
+        $data = User::find($id);
+        $data->update($request->all());
         activity()
             ->performedOn($data)
             ->log('Mengubah data pengguna dengan id ' . $data->id);

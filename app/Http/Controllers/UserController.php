@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        activity()->log('Logout dari sistem');
+        activity()->log(Auth::user()->name . ' logout dari sistem');
         $request->session()->flush();
         Auth::logout();
         return Redirect('login');

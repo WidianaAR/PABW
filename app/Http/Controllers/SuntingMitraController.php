@@ -47,7 +47,8 @@ class SuntingMitraController extends Controller
         }
 
         $request->validate($rule);
-        $data = User::find($id)->update($request->all());
+        $data = User::find($id);
+        $data->update($request->all());
         activity()
             ->performedOn($data)
             ->log('Mengubah data mitra dengan id ' . $data->id);

@@ -72,7 +72,8 @@ class HotelPenerbanganController extends Controller
                 'jumlah_terbooking.max' => 'Jumlah terbooking tidak boleh melebihi stok'
             ]);
 
-        $data = HotelPenerbangan::find($data->id)->update([
+        $data = HotelPenerbangan::find($data->id);
+        $data->update([
             'nama' => $request->nama,
             'stok' => $request->stok,
             'jumlah_terbooking' => $request->jumlah_terbooking,
