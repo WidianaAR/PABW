@@ -6,7 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -17,13 +20,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'role_id',
-        'name',
-        'email',
-        'password',
-        'saldo_emoney'
-    ];
+    public $timestamps = false;
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,19 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function hotel_penerbangan() {
+    public function hotel_penerbangan()
+    {
         return $this->hasMany(HotelPenerbangan::class);
     }
-    
-    public function transaksi_emoney() {
-        return $this->hasMany(TransaksiEmoney::class);
-    }
-    
-    public function transaksi_pemesanan() {
+
+    public function transaksi_pemesanan()
+    {
         return $this->hasMany(TransaksiPemesanan::class);
     }
+
+    public function password(): Attribute
+    {
+        return Attribute::make(
+        set: fn(string $value) => Hash::make($value),
+        ); }
 }
