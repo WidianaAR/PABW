@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -60,6 +61,22 @@ class User extends Authenticatable
     public function password(): Attribute
     {
         return Attribute::make(
-        set: fn(string $value) => Hash::make($value),
-        ); }
+            set: fn(string $value) => Hash::make($value),
+        );
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
