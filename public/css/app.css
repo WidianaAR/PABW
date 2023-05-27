@@ -1,0 +1,163 @@
+#login-bg {
+    display: flex;
+    width: 100%;
+    font-family: Helvetica;
+    height: 100vh;
+}
+
+.login-box {
+    margin: 0 auto;
+    background: #FFFFFF;
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.25);
+    border: 1px solid #343A3A;
+    width: 100vh;
+    height: 48vh;
+}
+
+.bold {
+    font-weight: bold;
+    margin: 0;
+    font-size: small;
+}
+
+.login-right {
+    float: right;
+    width: 55%;
+    height: 100%;
+    padding: 3%;
+}
+
+.login-left {
+    float: left;
+    width: 45%;
+    height: 100%;
+}
+
+.login-form {
+    padding: 3%;
+    width: 100%;
+    height: 12%;
+    border: 1px solid #343A3A;
+    border-radius: 50px;
+    margin-top: 6%;
+}
+
+.orange-button {
+    width: 100%;
+    height: 40px;
+    color: white;
+    background: #F2A93A;
+    border: 0px;
+    border-radius: 50px;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* Style pengguna */
+.pengguna table,
+.pengguna th,
+.pengguna td {
+    border: 3px solid white;
+}
+
+.pengguna tr.head {
+    background-color: #43CD8B;
+    color: white;
+}
+
+.pengguna tr.body-light {
+    background-color: #E8F3EE;
+}
+
+.pengguna tr.body-dark {
+    background-color: #43cd8b30;
+}
+
+.pengguna .tombol {
+    background: #43CD8B;
+    border-radius: 50px;
+    color: white;
+}
+
+.pengguna .tombol:hover {
+    background: #246e4a;
+    color: white;
+}
+
+
+/* Style admin */
+.admin table,
+.admin th,
+.admin td {
+    border: 3px solid white;
+}
+
+.admin tr.head {
+    background-color: #F2A93A;
+    color: white;
+}
+
+.admin tr.body-light {
+    background-color: #E8F3EE;
+}
+
+.admin tr.body-dark {
+    background-color: #ff94703d;
+}
+
+.admin .tombol {
+    background: #F2A93A;
+    border-radius: 50px;
+    color: white;
+}
+
+.admin .tombol:hover {
+    background: #ae7a2b;
+    color: white;
+}
+
+.admin h5 {
+    color: #F2A93A;
+}
+
+
+/* Style mitra */
+.mitra table,
+.mitra th,
+.mitra td {
+    border: 3px solid white;
+}
+
+.mitra tr.head {
+    background-color: #F67C55;
+    color: white;
+}
+
+.mitra tr.body-light {
+    background-color: #E8F3EE;
+}
+
+.mitra tr.body-dark {
+    background-color: #ff94703d;
+}
+
+.mitra .tombol {
+    background: #F67C55;
+    border-radius: 50px;
+    color: white;
+}
+
+.mitra .tombol:hover {
+    background: #b55e41;
+    color: white;
+}
