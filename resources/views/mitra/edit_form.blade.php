@@ -34,13 +34,13 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text">Stok</span>
-                <input type="text" class="form-control @error('stok') mb-0 is-invalid @enderror" name="stok"
+                <input type="number" class="form-control @error('stok') mb-0 is-invalid @enderror" name="stok"
                     value="{{ old('stok', $data->stok) }}" required>
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text">Jumlah Terbooking</span>
-                <input type="text" id="jumlah_terbooking"
+                <input type="number" id="jumlah_terbooking"
                     class="form-control @error('jumlah_terbooking') mb-0 is-invalid @enderror" name="jumlah_terbooking"
                     aria-describedby="jumlah_terbooking-error"
                     value="{{ old('jumlah_terbooking', $data->jumlah_terbooking) }}" required>
@@ -53,7 +53,7 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text">Harga</span>
-                <input type="text" class="form-control @error('harga') mb-0 is-invalid @enderror" name="harga"
+                <input type="number" class="form-control @error('harga') mb-0 is-invalid @enderror" name="harga"
                     value="{{ old('harga', $data->harga) }}" required>
             </div>
 

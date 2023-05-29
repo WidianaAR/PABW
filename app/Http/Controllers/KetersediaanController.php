@@ -52,19 +52,34 @@ class KetersediaanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'jumlah_terbooking' => 'required|numeric|max:' . $request->stok
-        ]);
-
         $data = HotelPenerbangan::find($id);
         $keterangan = $request->only(['keterangan_satu', 'keterangan_dua']);
         Keterangan::find($data->keterangan_id)->update($keterangan);
 
+        if ($request->jumlah_terbooking === $request->stok) {
+            $status = 'Tidak Tersedia';
+        } else {
+            $status = 'Tersedia';
+        }
+
+        $request->validate([
+            'jumlah_terbooking' => 'required|numeric|max:' . $request->stok
+        ], [
+            'jumlah_terbooking.max' => 'Jumlah terbooking tidak boleh melebihi stok'
+        ]);
+
         $hotelPenerbangan = HotelPenerbangan::find($id);
-        $hotelPenerbangan->update($request->all());
+        $hotelPenerbangan->update([
+            'nama' => $request->nama,
+            'stok' => $request->stok,
+            'jumlah_terbooking' => $request->jumlah_terbooking,
+            'status' => $status
+        ]);
+        
         activity()
             ->performedOn($hotelPenerbangan)
             ->log('Mengubah data dengan id ' . $hotelPenerbangan->id);
+        
         return redirect()->route('ketersediaan')->with('success', 'Data berhasil diubah');
     }
 }

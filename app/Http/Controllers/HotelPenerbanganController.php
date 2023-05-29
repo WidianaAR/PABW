@@ -20,10 +20,10 @@ class HotelPenerbanganController extends Controller
         $keterangan_data = Keterangan::create($keterangan);
         $keterangan_id = $keterangan_data->id;
 
-        if ($request->stok != 0) {
-            $status = 'Tersedia';
+        if ($request->jumlah_terbooking === $request->stok) {
+            $status = 'Tidak Tersedia';
         } else {
-            $status = 'Tidak tersedia';
+            $status = 'Tersedia';
         }
 
         $request->validate([
@@ -60,10 +60,10 @@ class HotelPenerbanganController extends Controller
         $keterangan = $request->only(['keterangan_satu', 'keterangan_dua']);
         Keterangan::find($data->keterangan_id)->update($keterangan);
 
-        if ($request->stok != 0) {
-            $status = 'Tersedia';
+        if ($request->jumlah_terbooking === $request->stok) {
+            $status = 'Tidak Tersedia';
         } else {
-            $status = 'Tidak tersedia';
+            $status = 'Tersedia';
         }
 
         $request->validate([

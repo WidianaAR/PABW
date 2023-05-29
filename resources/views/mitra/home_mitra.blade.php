@@ -63,6 +63,7 @@
                     <th scope="col">Alamat</th>
                     <th scope="col">Jumlah Kamar</th>
                     <th scope="col">Harga per Checkin</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -74,6 +75,7 @@
                         <td>{{ $kk->keterangan->keterangan_satu }}</td>
                         <td>{{ $kk->stok }}</td>
                         <td>{{ $kk->harga }}</td>
+                        <td>{{ $kk->status }}</td>
                         <td><a href="{{ route('edit_hp', [$kk->id, 'Hotel']) }}" class="btn tombol"><b>edit</b></a><a
                                 href="{{ route('delete_hp', $kk->id) }}" class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>
@@ -106,6 +108,7 @@
                     <th scope="col">Waktu WITA</th>
                     <th scope="col">Jumlah Kursi</th>
                     <th scope="col">Harga Ekonomi</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -118,6 +121,7 @@
                         <td>{{ \Carbon\Carbon::parse($tb->keterangan->keterangan_dua)->format('H:i') }}
                         <td>{{ $tb->stok }}</td>
                         <td>{{ $tb->harga }}</td>
+                        <td>{{ $tb->status }}</td>
                         <td><a href="{{ route('edit_hp', [$tb->id, 'Penerbangan']) }}" class="btn tombol"><b>edit</b></a><a
                                 href="{{ route('delete_hp', $tb->id) }}" class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>

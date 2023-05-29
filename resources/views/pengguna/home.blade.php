@@ -62,52 +62,64 @@
                     <th scope="col">Action</th>
                 </tr>
             </thead>
+
+            <script>
+            function showErrorMessage() {
+                alert("Tidak ada tiket yang dapat di booking");
+            }
+            </script>
+            
             <tbody>
                 @foreach ($ketersediaanKamar as $kk)
                     <tr class="body-dark">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $kk->nama }}</td>
                         <td>{{ $kk->keterangan->keterangan_satu }}</td>
-                        <td>{{ $kk->status }}</td>
+                        <td>{{ $kk->status }}   </td>
                         <td>{{ $kk->harga }}</td>
                         <td>
                             <button class="btn tombol" data-bs-toggle="modal"
-                                data-bs-target="#kamarModal{{ $kk->id }}"><b>pesan</b></button>
+                                data-bs-target="#kamarModal{{ $kk->id }}">
+                                <b>pesan</b></button>
 
-                            <div class="modal fade" id="kamarModal{{ $kk->id }}" tabindex="-1"
-                                aria-labelledby="kamarModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="kamarModal{{ $kk->id }}" tabindex="-1"aria-labelledby="kamarModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="{{ route('booking', $kk->id) }}" method="POST">
+                                        @if ($kk->status === 'Tidak Tersedia')
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="kamarModalLabel">Silahkan isi data</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                                <h1 class="modal-title fs-5" id="kamarModalLabel">Tidak ada tiket yang dapat di booking</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                @csrf
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text">Tanggal Booking</span>
-                                                    <input type="date" class="form-control" name="tanggal_booking"
-                                                        required>
+                                        @else
+                                            <form action="{{ route('booking', $kk->id) }}" method="POST">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="kamarModalLabel">Silahkan isi data</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <div class="modal-body">
+                                                    @csrf
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">Tanggal Booking</span>
+                                                        <input type="date" class="form-control" name="tanggal_booking" required>
+                                                    </div>
 
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text">Jumlah</span>
-                                                    <input type="number" class="form-control" name="jumlah"
-                                                        placeholder="Masukkan jumlah kamar" required>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">Jumlah</span>
+                                                        <input type="number" class="form-control" name="jumlah" placeholder="Masukkan jumlah kamar" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                                    style="background: grey; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px; border: 0">Batal</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px; border: 0">Pesan</button>
-                                            </div>
-                                        </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                        style="background: grey; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px; border: 0">Batal</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px; border: 0">Pesan</button>
+                                                </div>
+                                            </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+
                     </tr>
                 @endforeach
             </tbody>
@@ -153,6 +165,12 @@
                                 aria-labelledby="tiketModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
+                                    @if ($kk->status === 'Tidak Tersedia')
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="kamarModalLabel">Tidak ada tiket yang dapat di booking</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    @else   
                                         <form action="{{ route('booking', $tb->id) }}" method="POST">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="tiketModalLabel">Silahkan isi data</h1>
@@ -180,6 +198,7 @@
                                                     style="background: #43CD8B; border-radius: 45px; height: 40px; width: 100px; color: white; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 18px 24px; border: 0">Pesan</button>
                                             </div>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

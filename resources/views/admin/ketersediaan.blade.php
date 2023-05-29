@@ -60,12 +60,12 @@
                         @endif
                         <!-- <td>{{ $kk->jumlah_terbooking }}</td> -->
                         <td>{{ $kk->stok - $kk->jumlah_terbooking }}</td>
-                        <!-- <td>{{ $kk->status }}</td> -->
-                        @if ($kk->jumlah_terbooking == $kk->stok)
+                        <td>{{ $kk->status }}</td>
+                        <!-- @if ($kk->jumlah_terbooking == $kk->stok)
                             <td>Tidak tersedia</td>
                         @else
                             <td>Tersedia</td>
-                        @endif
+                        @endif -->
                         <td><a href="{{ route ('edit_ketersediaan_Hotel', $kk->id)}}" class="btn tombol"><b>edit</b></a>
                             <a href="{{ route ('delete_hotel', $kk->id)}}"class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>
@@ -114,12 +114,12 @@
                         @endif
                         <!-- <td>{{ $tb->jumlah_terbooking }}</td> -->
                         <td>{{ $tb->stok - $tb->jumlah_terbooking }}</td>
-                        <!-- <td>{{ $tb->status }}</td> -->
-                        @if ($tb->jumlah_terbooking == $tb->stok)
+                        <td>{{ $tb->status }}</td>
+                        <!-- @if ($tb->jumlah_terbooking == $tb->stok)
                             <td>Tidak tersedia</td>
                         @else
                             <td>Tersedia</td>
-                        @endif
+                        @endif -->
                         <td><a href="{{ route ('edit_ketersediaan_Pesawat', $tb->id)}}" class="btn tombol"><b>edit</b></a>
                             <a href="{{ route ('delete_penerbangan', $tb->id)}}"class="btn tombol"
                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data?');"><b>hapus</b></a></td>

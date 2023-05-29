@@ -34,6 +34,7 @@
                     <th scope="col">Alamat</th>
                     <th scope="col">Kamar Terbooking</th>
                     <th scope="col">Kamar Tersedia</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +45,7 @@
                         <td>{{ $kk->keterangan->keterangan_satu }}</td>
                         <td>{{ $kk->jumlah_terbooking }}</td>
                         <td>{{ $kk->stok - $kk->jumlah_terbooking }}</td>
+                        <td>{{ $kk->status }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -69,6 +71,7 @@
                     <th scope="col">Waktu WITA</th>
                     <th scope="col">Kursi Terbooking</th>
                     <th scope="col">Kursi Tersedia</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,6 +83,7 @@
                         <td>{{ \Carbon\Carbon::parse($tb->keterangan->keterangan_dua)->format('H:i') }}</td>
                         <td>{{ $tb->jumlah_terbooking }}</td>
                         <td>{{ $tb->stok - $tb->jumlah_terbooking }}</td>
+                        <td>{{ $tb->status}}</td>
                     </tr>
                 @endforeach
             </tbody>
