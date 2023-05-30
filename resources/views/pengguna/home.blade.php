@@ -165,7 +165,7 @@
                                 aria-labelledby="tiketModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                    @if ($kk->status === 'Tidak Tersedia')
+                                    @if ($tb->status === 'Tidak Tersedia')
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="kamarModalLabel">Tidak ada tiket yang dapat di booking</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
